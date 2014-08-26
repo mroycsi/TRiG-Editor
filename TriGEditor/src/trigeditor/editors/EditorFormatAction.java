@@ -11,8 +11,6 @@
 
 package trigeditor.editors;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -26,7 +24,7 @@ import org.eclipse.ui.PlatformUI;
  * @author Natasha
  *
  */
-public class EditorPrefixAction implements IEditorActionDelegate{
+public class EditorFormatAction implements IEditorActionDelegate{
 
 	/**
 	 * Creates a TriGEditor object in order to refactor prefixes when user performs the action
@@ -38,10 +36,10 @@ public class EditorPrefixAction implements IEditorActionDelegate{
 			final IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 			        .getActiveEditor();
 			if(editor instanceof TriGEditor){
-				((TriGEditor)editor).doRefactoring();
+				((TriGEditor)editor).format();
 			}
 			//t.firePropertyChange(IEditorPart.PROP_DIRTY);
-		} catch (CoreException | IOException e) {
+		} catch (Throwable  e) {
 			e.printStackTrace();
 		}
 		

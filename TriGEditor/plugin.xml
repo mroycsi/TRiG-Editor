@@ -7,7 +7,7 @@
       <editor
             name="TriG File Editor"
             extensions="trig"
-            icon="icons/sample.gif"
+            icon="icons/anzoIcon.png"
             contributorClass="trigeditor.editors.BasicTriGEditorActionContributor"
             class="trigeditor.editors.TriGEditor"
             id="trigeditor.editors.TriGEditor">
@@ -21,12 +21,72 @@
          		<action id="trigeditor.editors.EditorPrefixAction"
          			label="Refactor Prefixes"
          			toolbarPath="TriGEditor"
-         			icon="icons/sample.gif"
+         			icon="icons/anzoIcon.png"
          			tooltip="Refactor Prefixes"
          			class="trigeditor.editors.EditorPrefixAction"
          			definitionID="trigeditor.editors.EditorPrefixActionDef"
          		/>
          	</editorContribution>	
    </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+         	<editorContribution
+         		id="trigeditor.editors.EditorAction"
+         		targetID="trigeditor.editors.TriGEditor">
+         		<action id="trigeditor.editors.EditorFormatAction"
+         			label="Format Trig"
+         			toolbarPath="TriGEditor"
+         			icon="icons/anzoIcon.png"
+         			tooltip="Format Trig"
+         			class="trigeditor.editors.EditorFormatAction"
+         			definitionID="trigeditor.editors.EditorFormatActionDef"
+         		/>
+         	</editorContribution>	
+   </extension>
    
+
+   <extension
+      id="trigeditor.editors.trigMarker"
+      name="Trig Editor Problems"
+      point="org.eclipse.core.resources.markers">
+   <super
+         type="org.eclipse.core.resources.problemmarker">
+   </super>
+   <persistent
+         value="true">
+   </persistent>
+   <super
+         type="org.eclipse.core.resources.textmarker">
+   </super>
+</extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="trigeditor.editors.FormatHandler"
+            description="Format Trig File"
+            id="TriGEditor.format"
+            name="Format">
+      </command>
+      <category
+            id="TriGEditor.trig"
+            name="Trig">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="trigEditor.menu"
+               label="Trig">
+            <command
+                  commandId="TriGEditor.format"
+                  label="Format"
+                  style="push"
+                  tooltip="Format Trig Document">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
 </plugin>
